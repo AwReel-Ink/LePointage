@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b35"><meta name="description" content="Pointage NFC inclusif pour équipes espaces verts">
+  <link rel="manifest" href="manifest.json"><link rel="stylesheet" href="style.css">
+  <title>Repère — pointage chantier</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar"><div class="brand-mark" aria-hidden="true">✳</div><div><p class="eyebrow">ÉQUIPES ESPACES VERTS</p><h1>Repère</h1></div><button class="icon-btn" id="settingsBtn" aria-label="Ouvrir les paramètres" title="Paramètres">⚙</button></header>
+    <main id="mainContent">
+      <section class="hero" aria-labelledby="pageTitle"><div><p class="eyebrow">POINTAGE DU <span id="todayLabel"></span></p><h2 id="pageTitle">La journée, <em>bien repérée.</em></h2><p class="hero-copy">Scannez les badges de l'équipe, puis envoyez le récapitulatif en un geste.</p></div><div class="sun-stamp" aria-hidden="true">☼</div></section>
+      <section class="action-zone" aria-label="Actions de pointage"><button id="scanBtn" class="primary-btn scan-btn"><span class="scan-icon" aria-hidden="true">⌁</span><span>SCANNER</span><small id="scanHint">Badges NFC ou saisie manuelle</small></button><div class="send-row"><span id="countLabel">0 personne scannée</span><button id="sendTop" class="send-btn" disabled>ENVOYER <span aria-hidden="true">↗</span></button></div></section>
+      <section class="list-section" aria-labelledby="listTitle"><div class="section-heading"><div><p class="eyebrow">ÉQUIPE DU JOUR</p><h3 id="listTitle">Personnes scannées</h3></div><span class="count-pill" id="countPill">0</span></div><div id="workerList" class="worker-list" aria-live="polite"><div class="empty-state"><span aria-hidden="true">◌</span><p>Votre équipe apparaîtra ici<br><small>Commencez par scanner un badge.</small></p></div></div><button id="sendBottom" class="primary-btn bottom-send" disabled>ENVOYER LE RÉCAPITULATIF <span aria-hidden="true">↗</span></button></section>
+    </main>
+    <footer><span>Repère · hors connexion</span><span class="status-dot">● Données locales</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="fallbackDialog"><form method="dialog" class="dialog-card"><button class="close-btn" value="cancel" aria-label="Fermer">×</button><p class="eyebrow">MODE ALTERNATIF</p><h2>Ajouter une personne</h2><p id="fallbackReason" class="muted">La saisie manuelle reste disponible sur tous les appareils.</p><label for="manualName">Nom Prénom</label><input id="manualName" required autocomplete="name" placeholder="ex. Camille Martin"><div class="dialog-actions"><button class="ghost-btn" value="cancel">Annuler</button><button id="manualAdd" class="primary-btn" value="default">Ajouter</button></div></form></dialog>
+  <dialog id="timeDialog"><form method="dialog" class="dialog-card"><button class="close-btn" value="cancel" aria-label="Fermer">×</button><p class="eyebrow">RETOUR PERSONNALISÉ</p><h2 id="timeDialogTitle">Heure de retour</h2><label for="specificTime">Choisir une heure</label><input id="specificTime" type="time" required><div class="dialog-actions"><button class="ghost-btn" value="cancel">Annuler</button><button id="saveTime" class="primary-btn" value="default">Enregistrer</button></div></form></dialog>
+  <aside id="settingsPanel" class="settings-panel" aria-hidden="true"><div class="settings-head"><div><p class="eyebrow">RÉGLAGES</p><h2>Paramètres</h2></div><button id="closeSettings" class="close-btn" aria-label="Fermer les paramètres">×</button></div><section class="settings-card"><h3>Horaires par défaut</h3><p class="muted">Utilisés pour chaque nouvelle session.</p><div class="time-grid"><label>Mi-journée<input id="midday" type="time" value="12:00"></label><label>Fin de journée<input id="endday" type="time" value="17:00"></label></div><button id="saveSettings" class="primary-btn full-btn">Enregistrer les horaires</button></section><section class="settings-card"><div class="settings-title"><div><h3>Badges enregistrés</h3><p class="muted">Associez un nom à chaque tag.</p></div><button id="enrollBtn" class="small-primary">+ Inscrire</button></div><div id="tagList" class="tag-list"></div></section></aside>
+  <script type="module" src="js/app.js"></script>
+</body></html>

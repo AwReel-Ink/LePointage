@@ -1,0 +1,1 @@
+const CACHE='repere-v1';const ASSETS=['./','./index.html','./style.css','./manifest.json','./icon.svg','./js/app.js','./js/storage.js','./js/nfc.js','./js/mail.js'];self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));

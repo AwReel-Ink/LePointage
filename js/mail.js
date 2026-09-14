@@ -1,0 +1,2 @@
+export function mailBody(workers){const date=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date());return `Pointage chantier — ${date}\n\nNOM Prénom | Heure de Scan | Heure de Retour\n${workers.map(w=>`${w.name.toUpperCase()} | ${w.scan} | ${w.returnTime}`).join('\n')}`}
+export function mailto(workers){return `mailto:?subject=${encodeURIComponent('Pointage chantier')}&body=${encodeURIComponent(mailBody(workers))}`}

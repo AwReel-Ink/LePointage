@@ -1,0 +1,3 @@
+export const supported=()=>('NDEFReader' in window);
+export async function scan(onName){if(!supported())throw new Error('Web NFC n’est pas disponible sur cet appareil.');const reader=new NDEFReader();await reader.scan();reader.onreading=event=>{let name='';for(const r of event.message.records){if(r.recordType==='text'){try{name+=new TextDecoder(r.encoding||'utf-8').decode(r.data)}catch{name+=new TextDecoder().decode(r.data)}}}if(name.trim())onName(name.trim());};}
+export async function writeName(name){if(!supported())throw new Error('Web NFC n’est pas disponible pour inscrire ce tag.');const writer=new NDEFReader();await writer.write({records:[{recordType:'text',data:name}]});}
